@@ -199,6 +199,15 @@ nav button.create{margin-top:0}
     </article>
   </section>
   <section id="my-profile" style="display:none; padding:20px;">
+    <div style="margin: 20px;">
+      <img id="profile-picture"
+        src="https://placehold.co/120x120?text=Profile"
+        alt="Profile picture"
+        style="width:120px;height:120px;border-radius:50%;object-fit:cover;">
+      <br><br>
+      <label for="profile-picture-upload">Choose Profile Picture</label>
+      <input type="file" id="profile-picture-upload" accept="image/*">
+    </div>
     <h2>My Profile</h2>
     <p><strong>Name:</strong> Vybora User</p>
     <p><strong>Bio:</strong> Welcome to my Vybora profile!</p>
@@ -239,6 +248,16 @@ nav button.create{margin-top:0}
 
 <script>
 const notice = document.getElementById("notice");
+  const pictureUpload =
+    document.getElementById("profile-picture-upload");
+  const profilePicture =
+    document.getElementById("profile-picture");
+  pictureUpload.addEventListener("change", function () {
+    const file = pictureUpload.files[0];
+    if (file) {
+      profilePicture.src = URL.createObjectURL(file);
+    }
+  });
 const feed = document.getElementById("feed");
 
 function showNotice(message) {
