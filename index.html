@@ -436,7 +436,7 @@ document.getElementById("create").addEventListener("click", () => {
       const password = document.getElementById("vy-password").value;
       const message = document.getElementById("vy-message");
       if (!email || !password) {
-        message,textContent = "Please enter your email and password.";
+        message.textContent = "Please enter your email and password.";
         return;
       }
       const { error } = await
