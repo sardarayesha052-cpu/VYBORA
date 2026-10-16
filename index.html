@@ -439,8 +439,7 @@ document.getElementById("create").addEventListener("click", () => {
         message.textContent = "Please enter your email and password.";
         return;
       }
-      const { error } = await
-        supabase.auth.signInWithPassword({ email,password });
+      const { error } = await supabase.auth.signInWithPassword({ email,password });
       message.textContent = error ? error.message : "Login successful!";
     });
   </script>
