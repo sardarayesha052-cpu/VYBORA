@@ -440,7 +440,7 @@ document.getElementById("create").addEventListener("click", () => {
         return;
       }
       const { error } = await
-        supabase.auth,signInWithPassword({ email,password });
+        supabase.auth.signInWithPassword({ email,password });
       message.textContent = error ? error.message : "Login successful!";
     });
   </script>
