@@ -198,6 +198,13 @@ nav button.create{margin-top:0}
       <div class="caption">Creativity · Inspiration</div>
     </article>
   </section>
+  <section id="my-profile" style="display:none; padding:20px;">
+    <h2>My Profile</h2>
+    <p><strong>Name:</strong> Vybora User</p>
+    <p><strong>Bio:</strong> Welcome to my Vybora profile!</p>
+    <h3>My Posts</h3>
+    <p>Your posts will appear here.</p>
+  </section>
   <div class="empty hidden" id="empty">No matching posts found.</div>
 </main>
 
@@ -340,6 +347,16 @@ document.querySelectorAll("nav button[data-view]").forEach(button => {
     button.classList.add("active");
 
     const view = button.dataset.view;
+    if (view === "profile") {
+      document.getElementById("feed").style.display = "none";
+      document.getElementById("empty").style.display = "none";
+      document.getElementById("my-profile").style.display = "block";
+      showNotice("Welcome to your profile!");
+      return;
+    } else {
+      document.getElementById("feed").style.display = "block";
+      document.getElementById("my-profile").style.display = "none";
+    }
     showNotice(view === "Home"
       ? "Welcome back to your Vybora feed!"
       : view + " section selected. More features will be added in upcoming stages.");
