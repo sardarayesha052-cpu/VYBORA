@@ -423,11 +423,11 @@ document.getElementById("create").addEventListener("click", () => {
         message.textContent = "Password must be at least 6 characters."; 
         return;
       } 
-      if (typeof supabase === "undefined" || !supabase.auth) {
-        message.textContent = "Supabase setup needs checking.";
+      if (typeof supabaseClient === "undefined" || !supabaseClient.auth) {
+        message.textContent = "SupabaseClient setup needs checking.";
         return;
       }
-      const { error } = await supabase.auth.signUp({ email,password });
+      const { error } = await supabaseClient.auth.signUp({ email,password });
       message.textContent = error ? error.message : "Signup requested! Check your email if confirmation is required.";
     });
     document.getElementById("vy-login").addEventListener("click", async function () {
@@ -439,7 +439,7 @@ document.getElementById("create").addEventListener("click", () => {
         message.textContent = "Please enter your email and password.";
         return;
       }
-      const { error } = await supabase.auth.signInWithPassword({ email,password });
+      const { error } = await supabaseClient.auth.signInWithPassword({ email,password });
       message.textContent = error ? error.message : "Login successful!";
     });
   </script>
