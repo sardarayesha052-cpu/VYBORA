@@ -387,6 +387,7 @@ document.getElementById("create").addEventListener("click", () => {
   comments.className = "comments";
   const caption = document.createElement("div");
   caption.className = "caption";
+  
   caption.textContent = "Your new demo post";
 
   post.append(head, content, actions, comments, caption);
@@ -397,5 +398,51 @@ document.getElementById("create").addEventListener("click", () => {
 </script>
    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase.js"></script>
+
+  <!--VYBORA LOGIN HERE -->
+  <div style="max-width:420px;margin:25px auto;padding:22px;background:#181824;color:white;border-radius:18px;text-align:center;font-family:Arial,sans-serif">
+    <h2 style="color:#c9a7ff">Welcome to VYBORA </h2>
+    <P>Create your account or log in</P>
+    <input id="vy-email" type="email" placeholder="Email address" style="box-sizing:border-box;width:100%;padding:12px;margin:8px 0;border-radius:8px;border:0">
+   <input id="vy-password" type="password" placeholder="password(6+ characters)" style="box-sizing:border-box;width:100%;padding:12px;margin:8px 0;border-radius:8px;border:0">
+    <button id="vy-signup" type="button" style="padding:11px 18px;margin:8px;background:#a879ff;color:white;border:0;border-radius:8px">Sign Up</button>
+    <button id="vy-login" type="button" style="padding:11px 18px;margin:8px;background:#38334a;color:white;border:0;border-radius:8px">Login</button>
+    <p id="vy-message" role="status"></p>
+  </div>
+  <script>
+    document.getElementById("vy-signup").addEventListener("click", async function () {
+      const email =
+        document.getElementById("vy-email").value.trim();
+      const password = document.getElementById("vy-password").value;
+      const message = document.getElementById("vy-message");
+      if (!email || !password)  {
+        message.textContent = "Please enter your email and password.";
+        return;
+      }
+      if (password.length < 6) {
+        message.textContent = "Password must be at least 6 characters."; 
+        return;
+      } 
+      if (typeof supabase === "undefined" || !supabase.auth) {
+        message.textContent = "Supabase setup needs checking.";
+        return;
+      }
+      const { error } = await supabase.auth.signUp({ email,password });
+      message.textContent = error ? error.message : "Signup requested! Check your email if confirmation is required.";
+    });
+    document.getElementById("vy-login").addEventListener("click", async function () {
+      const email =
+        document.getElementById("vy-email").value.trim();
+      const password = document.getElementById("vy-password").value;
+      const message = document.getElementById("vy-message");
+      if (!email || !password) {
+        message,textContent = "Please enter your email and password.";
+        return;
+      }
+      const { error } = await
+        supabase.auth,signInWithPassword({ email,password });
+      message.textContent = error ? error.message : "Login successful!";
+    });
+  </script>
 </body>
 </html>
