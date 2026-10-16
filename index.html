@@ -357,9 +357,11 @@ document.querySelectorAll("nav button[data-view]").forEach(button => {
       document.getElementById("feed").style.display = "block";
       document.getElementById("my-profile").style.display = "none";
     }
-    showNotice(view === "Home"
-      ? "Welcome back to your Vybora feed!"
-      : view + " section selected. More features will be added in upcoming stages.");
+    if (view === "Home") {
+      showNotice("Welcome back to your Vybora feed!");
+    } eles {
+      showNotice(view + "section selected.");
+    }
 
     if (view === "Home") {
       document.getElementById("search").value = "";
